@@ -3,11 +3,14 @@
 
 
 #include <stdint.h>
+#include <stdio.h>
+
+
 typedef struct s_game
 {
 	int				fd;
-	char			**tab;
-	char			**tab_cpy;
+	char			**map;
+	char			**map_cpy;
 	unsigned int	columns;
 	unsigned int	line;
 	void			*mlx;

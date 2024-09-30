@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:43:16 by egomez            #+#    #+#             */
-/*   Updated: 2024/09/23 14:11:55 by bdany            ###   ########.fr       */
+/*   Updated: 2024/09/30 19:42:13 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-// .cub
-void	check_argv(char *argv)
-{
-	int	size_argv;
-
-	size_argv = ft_strlen(argv);
-	if ((size_argv >= 4) && (ft_strcmp(argv + size_argv - 4, ".cub") == 0))
-		return ;
-	write(2, "Error:\nThe map should end with .ber\n", 36);
-	exit(0);
-}
 
 // les char valid
 int	check_char_is_valid(char c)
@@ -45,22 +33,17 @@ int	check_char(t_game *window, char c)
 		i = 0;
 		while (i < window->columns)
 		{
-			if (!check_char_is_valid(window->tab[j][i]))
+			if (!check_char_is_valid(window->map[j][i]))
 			{
 				write(2, "Invalid map!\n", 13);
-				free_tab(window->tab);
+				free_tab(window->map);
 				exit(0);
 			}
-			if (window->tab[j][i] == c)
+			if (window->map[j][i] == c)
 				count++;
 			i++;
 		}
 		j++;
 	}
 	return (count);
-}
-// check les couleur
-uint32_t check_color(int r, int g, int b, int a)
-{
-    
 }
