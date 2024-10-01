@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:43:16 by egomez            #+#    #+#             */
-/*   Updated: 2024/09/30 19:42:13 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:37:25 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,34 @@ int	check_char_is_valid(char c)
      || c == '0' || c == '1' || c == ' ' || c == '\n' || c == '\0');
 }
 
-// check tout les char
-int	check_char(t_game *window, char c)
+int check_for_texture(t_data *data)
+{
+	while (data->map)
+	{
+
+	}
+}
+
+int check_map(t_data *window)
 {
 	unsigned int	i;
 	unsigned int	j;
-	unsigned int	count;
 
 	j = 0;
-	count = 0;
 	while (j < window->line - 1)
 	{
 		i = 0;
 		while (i < window->columns)
 		{
-			if (!check_char_is_valid(window->map[j][i]))
+			if (!check_char_map(window->map[j][i]))
 			{
 				write(2, "Invalid map!\n", 13);
 				free_tab(window->map);
-				exit(0);
+				return (1);
 			}
-			if (window->map[j][i] == c)
-				count++;
 			i++;
 		}
 		j++;
 	}
-	return (count);
+	return (0);
 }

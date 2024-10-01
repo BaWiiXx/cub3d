@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:26:01 by baptiste          #+#    #+#             */
-/*   Updated: 2024/10/01 09:54:01 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:25:54 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ uint32_t check_color(int r, int g, int b, int a)
 }
 
 
-void flood_file(t_game *game, char **map, int x, int y)
+void flood_file(t_data *data, char **map, int x, int y)
 {
     if (y < 0 || y >= game->columns || x < 0 || x >= game->line || map[y][x] != 0)
         return ;
