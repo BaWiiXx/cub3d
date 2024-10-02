@@ -6,7 +6,7 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:26:01 by baptiste          #+#    #+#             */
-/*   Updated: 2024/10/01 15:25:54 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/02 15:55:42 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ void check_value(int r, int g, int b)
         exit(EXIT_FAILURE);
 }
 
-uint32_t check_color(int r, int g, int b, int a)
+uint32_t check_color(int r, int g, int b)
 {
-    return (r << 16 | g << 8 | b << 8 | a);
+    return (r << 16 | g << 8 | b << 8 | 255);
 }
 
 
-void flood_file(t_data *data, char **map, int x, int y)
+void flood_fill(t_data *data, char **map, int x, int y)
 {
-    if (y < 0 || y >= game->columns || x < 0 || x >= game->line || map[y][x] != 0)
+    if (y < 0 || y >= data->columns || x < 0 || x >= data->line || map[y][x] != 0)
         return ;
     map[y][x] = '.';
-    flood_fill(game, map, x - 1, y);
-    flood_fill(game, map, x + 1, y);
-    flood_fill(game, map, x, y - 1);
-    flood_fill(game, map, x, y + 1);
+    flood_fill(data, map, x - 1, y);
+    flood_fill(data, map, x + 1, y);
+    flood_fill(data, map, x, y - 1);
+    flood_fill(data, map, x, y + 1);
 }

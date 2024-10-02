@@ -6,17 +6,40 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:35:35 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/01 16:03:00 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/02 15:52:21 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-// les char valid
 int	is_char_valid(char c)
 {
 	return (c == 'N' || c == 'W' || c == 'S' || c == 'E'
      || c == '0' || c == '1' || c == ' ' || c == '\n' || c == '\0');
+}
+int check_top_and_bottom(char *line)
+{
+	int i;
+
+	i = 0;
+	while(line[i])
+	{
+		if (line[i] != '1' && line[i] != ' ')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+void flood_fill(t_data *data, char **map, int x, int y)
+{
+    if (y < 0 || y >= data->columns || x < 0 || x >= data->line || map[y][x] != 0)
+        return ;
+    map[y][x] = '.';
+    flood_fill(data, map, x - 1, y);
+    flood_fill(data, map, x + 1, y);
+    flood_fill(data, map, x, y - 1);
+    flood_fill(data, map, x, y + 1);
 }
 
 int is_whitespaces(char *str)
@@ -34,12 +57,15 @@ int is_whitespaces(char *str)
 	return (0);
 }
 
-int is_line_valid(char *str)
+int check_line(char *str, t_data *data)
 {
 	int i;
 
 	while (str[i])
 	{
+		if (is_char_valid(str[i]) == 'N' || is_char_valid(str[i]) == 'S'
+			|| is_char_valid(str[i]) == 'E' || is_char_valid(str[i]) == 'W');
+			data->texture->direction++;
 		if(!is_char_valid(str[i]))
 			return (1);
 		i++;
@@ -79,11 +105,12 @@ int check_for_texture(t_data *data)
 			data->texture->count_c++;
 		i++;
 	}
+	if (check_count_texture(data));
+		exit(EXIT_FAILURE);
+	return (0);
 }
 
-
-
-static int	validate_line(char *line, t_data *map)
+static int	validate_line(char *line, t_data *data)
 {
 	int	j;
 
@@ -92,9 +119,9 @@ static int	validate_line(char *line, t_data *map)
 	j = ft_strlen(line) - 1;
 	if (line[j] != '1')
 			return (write(2,"error: invalid map\n", 21));
-	if (is_line_valid(line) == 0 || is_whitespaces(line) == 1)
+	if (check_line(line, data) == 1 || is_whitespaces(line) == 0)
 			return (write(2,"error: invalid map\n", 21));
-	if (is_direction_valid < 1)
+	if (data->texture->direction > 1)
 			return (write(2,"error: invalid map\n", 21));
 	return (0);
 }
@@ -104,9 +131,19 @@ int check_map(t_data *data)
 	unsigned int	i;
 
 	i = 0;
+	while (data->map[i] && !is_whitespaces(data->map[i]))
+		i++;
+	if (check_top_and_bottom(data->map[i]))
+		printf("error: map not closed\n");
 	while (data->map[i])
 	{
-		
+		flood_fill(data, data->map, data->line, data->columns);
+		if (check_line(data->map[i], data))
+			return (1);
+		i++;
 	}
+	i--;
+	if (check_top_and_bottom(data->map[i]))
+		printf("error: map not closed\n");
 	return (0);
 }
