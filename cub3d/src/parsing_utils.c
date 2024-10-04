@@ -6,11 +6,57 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:30:04 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/04 13:52:38 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/04 18:11:50 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*tab;
+	int		i;
+	int		j;
+
+	if (!s1 || !s2)
+		return (NULL);
+	tab = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!tab)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i])
+	{
+		tab[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		tab[i] = s2[j];
+		j++;
+		i++;
+	}
+	tab[i] = '\0';
+	return (tab);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t				i;
+	const unsigned char	*str1;
+	const unsigned char	*str2;
+
+	i = 0;
+	str1 = (const unsigned char *)s1;
+	str2 = (const unsigned char *)s2;
+	while (str1[i] || str2[i])
+	{
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
+		i++;
+	}
+	return (0);
+}
 
 int	ft_atoi(const char *nptr)
 {

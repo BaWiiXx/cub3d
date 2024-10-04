@@ -6,7 +6,7 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:43:16 by egomez            #+#    #+#             */
-/*   Updated: 2024/10/04 17:47:57 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/04 19:12:18 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int main(int argc, char **argv)
     check_cub_argv(argv[1]);
 	open_fd(&data, argv);
 	data.map = get_map(data.fd);
+	check_texture();
     check_map(&data);
 }

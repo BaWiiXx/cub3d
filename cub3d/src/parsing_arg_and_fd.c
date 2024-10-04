@@ -6,7 +6,7 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 09:58:19 by baptiste          #+#    #+#             */
-/*   Updated: 2024/10/04 17:04:01 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/04 18:09:59 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int open_fd(t_data *data, char **argv)
 {
-	if (data->fd = open(argv[1], __O_DIRECTORY))
+	data->fd = open(argv[1], __O_DIRECTORY);
+	if (data->fd < 0)
 	{
-		printf("error:%s, is a directory\n", data->fd);
+		printf("error: %d, is a directory\n", data->fd);
 		close(data->fd);
 		return (1);
 	}

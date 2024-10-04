@@ -24,8 +24,8 @@ typedef struct s_data
 	int				fd;
 	t_texture		*texture;
 	char			**map;
-	unsigned int	columns;
-	unsigned int	line;
+	int				columns;
+	int				line;
 }					t_data;
 
 int 	is_whitespaces(char *str);
@@ -39,5 +39,8 @@ char	**get_map(int fd);
 void	check_cub_argv(char *argv);
 int 	open_fd(t_data *data,  char **argv);
 int		check_map(t_data *data);
+char	*ft_strjoin(char const *s1, char const *s2);
+int		ft_strcmp(const char *s1, const char *s2);
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
 
 # endif

@@ -6,7 +6,7 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:35:35 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/04 17:10:20 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/04 18:20:46 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,15 @@ void flood_fill(t_data *data, char **map, int x, int y)
 // 	return (0);
 // }
 
-int check_line(char *str, t_data *data)
+static int check_line(char *str, t_data *data)
 {
 	int i;
 
+	i = 0;
 	while (str[i])
 	{
 		if (is_char_valid(str[i]) == 'N' || is_char_valid(str[i]) == 'S'
-			|| is_char_valid(str[i]) == 'E' || is_char_valid(str[i]) == 'W');
+			|| is_char_valid(str[i]) == 'E' || is_char_valid(str[i]) == 'W')
 			data->texture->direction++;
 		if(!is_char_valid(str[i]))
 			return (1);
@@ -73,7 +74,7 @@ int check_line(char *str, t_data *data)
 	return (0);
 }
 
-int check_count_texture(t_data *data)
+static int check_count_texture(t_data *data)
 {
 	if (data->texture->count_we != 1 || data->texture->count_so != 1 || data->texture->count_no != 1
 		|| data->texture->count_ea != 1 || data->texture->count_f != 1 || data->texture->count_c != 1)
@@ -84,7 +85,7 @@ int check_count_texture(t_data *data)
 	return (0);
 }
 
-int check_for_texture(t_data *data)
+static int check_for_texture(t_data *data)
 {
 	int i;
 
@@ -105,7 +106,7 @@ int check_for_texture(t_data *data)
 			data->texture->count_c++;
 		i++;
 	}
-	if (check_count_texture(data));
+	if (check_count_texture(data))
 		return (1);
 	return (0);
 }
@@ -138,7 +139,7 @@ int check_map(t_data *data)
 	while (data->map[i])
 	{
 		flood_fill(data, data->map, data->line, data->columns);
-		if (check_line(data->map[i], data))
+		if (validate_line(data->map[i], data))
 			return (1);
 		i++;
 	}
