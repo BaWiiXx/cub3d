@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
+/*   have_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:07:22 by baptiste          #+#    #+#             */
-/*   Updated: 2024/09/30 14:07:23 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/10/04 17:38:42 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ char **get_map(int fd)
 	char *tmp;
 
 	map = NULL;
+	tmp = NULL;
 	line = get_next_line(fd);
-	if (!line)
-		returb(NULL);
+	if(!line)
+		return(NULL);
 	while(tmp != NULL)
 	{
 		line = ft_strjoin(line, tmp);
@@ -33,3 +34,26 @@ char **get_map(int fd)
 	free(tmp);
 	return (map);
 }
+
+// char	**get_map(char *str, t_data *data)
+// {
+// 	unsigned int	i;
+// 	char			*temp;
+
+// 	i = 0;
+// 	data->fd = open(str, O_RDONLY);
+// 	if (data->fd == '\0')
+// 		exit(0);
+// 	if (!data->map)
+// 		return (NULL);
+// 	while (i < data->line)
+// 	{
+// 		temp = get_next_line(data->fd);
+// 		data->map[i] = ft_strdup(temp);
+// 		free(temp);
+// 		temp = NULL;
+// 		i++;
+// 	}
+// 	close(data->fd);
+// 	return (data->map);
+// }

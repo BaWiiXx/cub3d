@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   parsing_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 11:58:10 by bdany             #+#    #+#             */
-/*   Updated: 2023/11/17 16:26:05 by bdany            ###   ########.fr       */
+/*   Created: 2024/09/30 14:26:01 by baptiste          #+#    #+#             */
+/*   Updated: 2024/10/04 13:46:15 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <parsing.h>
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+uint32_t check_color(int r, int g, int b)
 {
-	size_t				i;
-	unsigned char		*d;
-	unsigned char		*s;
-
-	i = 0;
-	d = (unsigned char *)dest;
-	s = (unsigned char *)src;
-	if (!dest && !src)
-		return (NULL);
-	if (s < d)
-	{
-		while (n > 0)
-		{
-			d[n - 1] = s[n - 1];
-			n--;
-		}
-		return (dest);
-	}
-	while (i < n)
-	{
-		d[i] = s[i];
-		i++;
-	}
-	return (dest);
+    return (r << 16 | g << 8 | b << 8 | 255);
 }
+void check_value(int r, int g, int b)
+{
+    if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+        printf("error, wrong color value.\n");
+        exit(EXIT_FAILURE);
+}
+

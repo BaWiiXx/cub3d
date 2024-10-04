@@ -1,6 +1,6 @@
 NAME = cub3d
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -Iincludes -Ilibft
+CFLAGS = -Wall -Wextra -Werror -Iincludes
 
 ifdef DEBUG
 CFLAGS += -g
@@ -10,25 +10,23 @@ ifdef CHECK
 CFLAGS += -fsanitize=address
 endif
 
-LIBFT = libft/libft.a
-HEADERS = cub3d.h
+HEADERS = parsing.h
 
 SRC_DIR	= src
 OBJ_DIR	= obj
 DIRDUP	= mkdir -p $(@D)
 
-SRC	= main.c
+SRC	= main.c ft_split.c have_map.c parsing_arg_and_fd.c parsing_color.c \
+		parsing_map.c parsing_utils.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 		
 SRC		:= $(SRC:%=$(SRC_DIR)/%)
 OBJ 	:= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(OBJ) $(LIBFT) -o $@ 
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -o $@ 
 
-$(LIBFT):
-	@make -j8 -C libft/ all
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER)
 	$(DIRDUP)
@@ -36,7 +34,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER)
 
 clean:
 	rm -f $(OBJ)
-	@make -C libft/ clean
 	
 fclean: clean
 	rm -f $(NAME)

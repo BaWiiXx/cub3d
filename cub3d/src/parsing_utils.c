@@ -6,7 +6,7 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:30:04 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/01 15:48:49 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/04 13:52:38 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,32 @@ char	*ft_strchr(const char *s, int c)
 	if (*s == chr)
 		return ((char *)s);
 	return (0);
+}
+
+int is_whitespaces(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] >= '9' && str[i] <= '13' || str[i] == '32')
+			i++;
+		else
+			return (1);
+	}
+	return (0);
+}
+
+void free_tab(char **tab)
+{
+	int i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		++i;
+	}
+	free(tab);
 }

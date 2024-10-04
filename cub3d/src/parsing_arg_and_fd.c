@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_arg.c                                      :+:      :+:    :+:   */
+/*   parsing_arg_and_fd.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 09:58:19 by baptiste          #+#    #+#             */
-/*   Updated: 2024/10/01 15:52:15 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/04 17:04:01 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parsing.h>
 
-int check_fd(t_data *window)
+int open_fd(t_data *data, char **argv)
 {
-		if (window->fd = open(window->fd, __O_DIRECTORY))
+	if (data->fd = open(argv[1], __O_DIRECTORY))
 	{
-		printf("error:%s, is a directory\n", window->fd);
-		close(window->fd);
+		printf("error:%s, is a directory\n", data->fd);
+		close(data->fd);
 		return (1);
 	}
-	window->fd = open(window->fd, O_RDONLY);
-	if (window->fd < 0)
+	data->fd = open(argv[1], O_RDONLY);
+	if (data->fd < 0 || data->fd > 1028)
 	{
-		printf("error files\n");
-		close(window->fd);
+		printf("error\n");
+		close(data->fd);
 		return (1);
 	}
 	return (0);

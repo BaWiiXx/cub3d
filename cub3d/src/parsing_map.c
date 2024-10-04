@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_map.h                                      :+:      :+:    :+:   */
+/*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:35:35 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/02 15:52:21 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/04 17:10:20 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int check_top_and_bottom(char *line)
 
 void flood_fill(t_data *data, char **map, int x, int y)
 {
-    if (y < 0 || y >= data->columns || x < 0 || x >= data->line || map[y][x] != 0)
+    if (y < 0 || y >= data->columns || x < 0 || x >= data->line || map[y][x] != '0')
         return ;
     map[y][x] = '.';
     flood_fill(data, map, x - 1, y);
@@ -42,20 +42,20 @@ void flood_fill(t_data *data, char **map, int x, int y)
     flood_fill(data, map, x, y + 1);
 }
 
-int is_whitespaces(char *str)
-{
-	int i;
+// int is_whitespaces(char *str)
+// {
+// 	int i;
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] >= '9' && str[i] <= '13' || str[i] == '32')
-			i++;
-		else
-			return (1);
-	}
-	return (0);
-}
+// 	i = 0;
+// 	while (str[i])
+// 	{
+// 		if (str[i] >= '9' && str[i] <= '13' || str[i] == '32')
+// 			i++;
+// 		else
+// 			return (1);
+// 	}
+// 	return (0);
+// }
 
 int check_line(char *str, t_data *data)
 {
@@ -106,7 +106,7 @@ int check_for_texture(t_data *data)
 		i++;
 	}
 	if (check_count_texture(data));
-		exit(EXIT_FAILURE);
+		return (1);
 	return (0);
 }
 
@@ -134,7 +134,7 @@ int check_map(t_data *data)
 	while (data->map[i] && !is_whitespaces(data->map[i]))
 		i++;
 	if (check_top_and_bottom(data->map[i]))
-		printf("error: map not closed\n");
+		return(1);
 	while (data->map[i])
 	{
 		flood_fill(data, data->map, data->line, data->columns);
@@ -144,6 +144,6 @@ int check_map(t_data *data)
 	}
 	i--;
 	if (check_top_and_bottom(data->map[i]))
-		printf("error: map not closed\n");
+		return(1);
 	return (0);
 }

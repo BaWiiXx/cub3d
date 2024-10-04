@@ -6,11 +6,50 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:39:45 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/01 15:40:37 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/04 17:14:44 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*tab;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	if (start > ft_strlen(s))
+		len = 0;
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	tab = malloc(sizeof(char) * (len + 1));
+	if (!tab)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		tab[i] = s[i + start];
+		i++;
+	}
+	tab[i] = 0;
+	return (tab);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	size_t			i;
+	unsigned char	*temp;
+
+	i = 0;
+	temp = s;
+	while (i < n)
+	{
+		temp[i] = '\0';
+		i++;
+	}
+	return ;
+}
 
 void	*ft_calloc(size_t count, size_t size)
 {
@@ -25,7 +64,7 @@ void	*ft_calloc(size_t count, size_t size)
 	return (tab);
 }
 
-int	ft_count_word(const char *s, char c)
+static int	ft_count_word(const char *s, char c)
 {
 	int	i;
 	int	count;
