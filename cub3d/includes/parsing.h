@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-# include "../get_next_line/get_next_line.h" 
+#include "../get_next_line/get_next_line.h" 
 
 typedef struct s_texture
 {
@@ -38,6 +38,6 @@ char	**ft_split(char const *s, char c);
 char	**get_map(int fd);
 void	check_cub_argv(char *argv);
 int 	open_fd(t_data *data,  char **argv);
-int		 check_map(t_data *data);
+int		check_map(t_data *data);
 
 # endif
