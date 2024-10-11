@@ -6,13 +6,13 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 09:58:19 by baptiste          #+#    #+#             */
-/*   Updated: 2024/10/04 18:09:59 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/11 14:59:56 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parsing.h>
 
-int open_fd(t_data *data, char **argv)
+int open_fd(t_game *data, char **argv)
 {
 	data->fd = open(argv[1], __O_DIRECTORY);
 	if (data->fd < 0)
