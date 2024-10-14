@@ -6,7 +6,7 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 14:41:12 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/11 16:19:55 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/14 17:28:01 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,8 @@
 
 typedef struct s_ceilfloor
 {
-	int	r_ceil;
-	int	g_ceil;
-	int	b_ceil;
-	int	r_floor;
-	int	g_floor;
-	int	b_floor;
+	int ceil_color;
+	int floor_color;
 }		t_ceilfloor;
 
 typedef struct s_text
@@ -175,6 +171,7 @@ void		move(t_game *game);
 void		rotate2(t_game *game);
 void		update(t_game *game);
 uint32_t	get_color_rgba(int r, int g, int b, int a);
+void 		set_color(t_game *data, char *line);
 
 void		raycasting(t_game *game);
 void		raycasting2(t_game *game);
@@ -187,6 +184,10 @@ void		draw_ceiling_floor(t_game *game, int draw_start,
 void		draw_textures(t_game *game);
 
 void		free_all(t_game *game);
+
+//fonction for check map
+int check_line(char *str, t_game *data);
+int	is_char_valid(char c);
 
 int 	is_whitespaces(char *str);
 char	*ft_strchr(const char *s, int c);

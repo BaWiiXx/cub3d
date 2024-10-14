@@ -6,7 +6,7 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:35:35 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/11 16:19:53 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/14 17:48:49 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void flood_fill(t_map *data, char **map, int x, int y)
     flood_fill(data, map, x, y + 1);
 }
 
-static int check_line(char *str, t_game *data)
+int check_line(char *str, t_game *data)
 {
 	int i;
 
@@ -142,29 +142,29 @@ static int	validate_line(char *line, t_game *data)
 			return (write(2,"error: invalid map\n", 21));
 	if (check_line(line, data) == 1 || is_whitespaces(line) == 0)
 			return (write(2,"error: invalid map\n", 21));
-	if (data->texture.direction > 1)
+	if (data->texture.direction > 1 || data->texture.direction < 1)
 			return (write(2,"error: invalid map\n", 21));
 	return (0);
 }
 
-int check_map(t_game *data)
-{
-	unsigned int	i;
+// int check_map(t_game *data)
+// {
+// 	unsigned int	i;
 
-	i = 0;
-	while (data->map.map[i] && !is_whitespaces(data->map.map[i]))
-		i++;
-	if (check_top_and_bottom(data->map.map[i]))
-		return(1);
-	while (data->map.map[i])
-	{
-		flood_fill(data, data->map.map, data->map.line, data->map.columns);
-		if (validate_line(data->map.map[i], data))
-			return (1);
-		i++;
-	}
-	i--;
-	if (check_top_and_bottom(data->map.map[i]))
-		return(1);
-	return (0);
-}
+// 	i = 0;
+// 	while (data->map.map[i] && !is_whitespaces(data->map.map[i]))
+// 		i++;
+// 	if (check_top_and_bottom(data->map.map[i]))
+// 		return(1);
+// 	while (data->map.map[i])
+// 	{
+// 		flood_fill(data, data->map.map, data->map.line, data->map.columns);
+// 		if (validate_line(data->map.map[i], data))
+// 			return (1);
+// 		i++;
+// 	}
+// 	i--;
+// 	if (check_top_and_bottom(data->map.map[i]))
+// 		return(1);
+// 	return (0);
+// }
