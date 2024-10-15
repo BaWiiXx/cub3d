@@ -6,11 +6,11 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:43:16 by egomez            #+#    #+#             */
-/*   Updated: 2024/10/11 15:00:47 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/15 15:50:13 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../include/parsing.h"
 
 int main(int argc, char **argv)
 {

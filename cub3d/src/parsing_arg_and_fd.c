@@ -6,11 +6,11 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 09:58:19 by baptiste          #+#    #+#             */
-/*   Updated: 2024/10/11 14:59:56 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/15 15:50:00 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parsing.h>
+#include <../include/parsing.h>
 
 int open_fd(t_game *data, char **argv)
 {

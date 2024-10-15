@@ -6,11 +6,29 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:30:04 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/04 18:11:50 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/15 15:49:49 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include <../include/parsing.h>
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t				i;
+	const unsigned char	*str1;
+	const unsigned char	*str2;
+
+	i = 0;
+	str1 = (const unsigned char *)s1;
+	str2 = (const unsigned char *)s2;
+	while ((i < n) && (str1[i] || str2[i]))
+	{
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
+		i++;
+	}
+	return (0);
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

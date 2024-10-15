@@ -6,11 +6,11 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:35:35 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/14 17:48:49 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/15 16:14:59 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include <../include/parsing.h>
 
 int	is_char_valid(char c)
 {
@@ -64,7 +64,7 @@ static int check_count_texture(t_game *data)
 	if (data->texture.count_we != 1 || data->texture.count_so != 1 || data->texture.count_no != 1
 		|| data->texture.count_ea != 1 || data->texture.count_f != 1 || data->texture.count_c != 1)
 	{
-		printf("error: texture is not good");
+		printf("error: ");
 		return (1);
 	}
 	return (0);
@@ -87,9 +87,9 @@ static void check_for_texture(t_game *data)
 			data->texture.count_ea++;
 		if (ft_strncmp(map_cpy[i], "WE ", 3))
 			data->texture.count_we++;
-		if (ft_strncmp(map_cpy[i], "f ", 2))
+		if (ft_strncmp(map_cpy[i], "F ", 2))
 			data->texture.count_f++;
-		if (ft_strncmp(map_cpy[i], "c ", 2))
+		if (ft_strncmp(map_cpy[i], "C ", 2))
 			data->texture.count_c++;
 		i++;
 	}
@@ -107,7 +107,9 @@ int load_image(char *line, mlx_texture_t *path)
 		free(line);
 		exit(EXIT_FAILURE);
 	}
-	*path = mlx_load_png(tab[1]);
+	path = mlx_load_png(tab[1]);
+	if (!path)
+		exit_error("error");
 	free(path);
 }
 

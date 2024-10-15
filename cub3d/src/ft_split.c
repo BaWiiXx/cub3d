@@ -6,11 +6,11 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:39:45 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/04 17:14:44 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/15 15:50:23 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../include/parsing.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
