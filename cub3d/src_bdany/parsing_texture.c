@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 11:40:11 by baptiste          #+#    #+#             */
-/*   Updated: 2024/10/16 11:51:37 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:18:40 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <../include/parsing.h>
 
-static int check_count_texture(t_game *data)
+static int	check_count_texture(t_game *data)
 {
-	if (data->texture.count_we != 1 || data->texture.count_so != 1 || data->texture.count_no != 1
-		|| data->texture.count_ea != 1 || data->texture.count_f != 1 || data->texture.count_c != 1)
+	if (data->texture.count_we != 1 || data->texture.count_so != 1
+		|| data->texture.count_no != 1 || data->texture.count_ea != 1
+		|| data->texture.count_f != 1 || data->texture.count_c != 1)
 	{
 		printf("error: ");
 		return (1);
@@ -23,9 +24,9 @@ static int check_count_texture(t_game *data)
 	return (0);
 }
 
-void load_image(char *line, mlx_texture_t *path)
+void	load_image(char *line, mlx_texture_t *path)
 {
-	char *tab;
+	char	*tab;
 
 	tab = ft_split(line, ' ');
 	if (!tab || !line)
@@ -44,10 +45,10 @@ void load_image(char *line, mlx_texture_t *path)
 	free(tab);
 }
 
-static void check_for_texture(t_game *data)
+static void	check_for_texture(t_game *data)
 {
-	int i;
-	char **map_cpy;
+	int		i;
+	char	**map_cpy;
 
 	i = 0;
 	map_cpy = data->map.map;
@@ -70,9 +71,9 @@ static void check_for_texture(t_game *data)
 	check_count_texture(data);
 }
 
-void check_texture(t_game *data)
+void	check_texture(t_game *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	check_for_texture(data->map.map[i]);
@@ -86,6 +87,10 @@ void check_texture(t_game *data)
 			load_image(data->map.map[i], data->texture.path[2]);
 		if (strncmp(data->map.map[i], "WE ", 3) == 0)
 			load_image(data->map.map[i], data->texture.path[3]);
+		if (strncmp(data->map.map[i], "F ", 2) == 0)
+			set_color(data->ceilfloor.floor_color, data->map.map[i]);
+		if (strncmp(data->map.map[i], "C ", 2) == 0)
+			set_color(data->ceilfloor.ceil_color, data->map.map[i]);
 		i++;
 	}
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_arg_and_fd.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 09:58:19 by baptiste          #+#    #+#             */
-/*   Updated: 2024/10/16 11:55:16 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:08:51 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <../include/parsing.h>
 
-int open_fd(t_game *data, char **argv)
+int	open_fd(t_game *data, char **argv)
 {
 	data->fd = open(argv[1], __O_DIRECTORY);
 	if (data->fd < 0)
@@ -22,7 +22,7 @@ int open_fd(t_game *data, char **argv)
 		return (1);
 	}
 	data->fd = open(argv[1], O_RDONLY);
-	if (data->fd < 0 || data->fd > 1028)
+	if (data->fd < 0 || data->fd > 1024)
 	{
 		printf("error\n");
 		close(data->fd);

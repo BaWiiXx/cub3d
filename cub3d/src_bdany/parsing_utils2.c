@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 11:37:42 by baptiste          #+#    #+#             */
-/*   Updated: 2024/10/16 11:39:18 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/10/16 14:11:37 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <../include/parsing.h>
 
-void free_tab(char **tab)
+void	free_tab(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i])
@@ -25,9 +25,9 @@ void free_tab(char **tab)
 	free(tab);
 }
 
-int is_whitespaces(char *str)
+int	is_whitespaces(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
