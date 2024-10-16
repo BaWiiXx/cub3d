@@ -1,44 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   have_map.c                                         :+:      :+:    :+:   */
+/*   parsing_utils3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 14:07:22 by baptiste          #+#    #+#             */
-/*   Updated: 2024/10/16 11:49:48 by baptiste         ###   ########.fr       */
+/*   Created: 2024/10/16 11:46:23 by baptiste          #+#    #+#             */
+/*   Updated: 2024/10/16 11:47:51 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/parsing.h"
 
-int size_map (int fd)
+void	ft_bzero(void *s, size_t n)
 {
-	char *line;
-	int	count_line;
-
-	count_line = 0;
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		count_line++;
-		free(line);
-	}
-	return (count_line);
-}
-
-void get_map(int fd, t_game *data)
-{
-	char *line;
-	int i;
+	size_t			i;
+	unsigned char	*temp;
 
 	i = 0;
-	data->map.map = malloc(sizeof(char *) * (data->map.line + 1));
-	if (!data->map.map)
-		return;
-	while(i < data->map.line && (line = get_next_line(fd)) != NULL)
+	temp = s;
+	while (i < n)
 	{
-		data->map.map[i] = line;
+		temp[i] = '\0';
 		i++;
 	}
-	data->map.map[i] = NULL;
+	return ;
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*tab;
+
+	if ((size * count > INT32_MAX) || (size > UINT16_MAX && count > UINT16_MAX))
+		return (NULL);
+	tab = malloc(count * size);
+	if (!tab)
+		return (NULL);
+	ft_bzero(tab, count * size);
+	return (tab);
 }

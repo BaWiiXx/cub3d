@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_arg_and_fd.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 09:58:19 by baptiste          #+#    #+#             */
-/*   Updated: 2024/10/15 15:50:00 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/16 11:55:16 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int open_fd(t_game *data, char **argv)
 		return (1);
 	}
 	return (0);
-	
 }
 
 void	check_cub_argv(char *argv)

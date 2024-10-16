@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:39:45 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/15 15:50:23 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/16 11:49:24 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,34 +33,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		i++;
 	}
 	tab[i] = 0;
-	return (tab);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	size_t			i;
-	unsigned char	*temp;
-
-	i = 0;
-	temp = s;
-	while (i < n)
-	{
-		temp[i] = '\0';
-		i++;
-	}
-	return ;
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*tab;
-
-	if ((size * count > INT32_MAX) || (size > UINT16_MAX && count > UINT16_MAX))
-		return (NULL);
-	tab = malloc(count * size);
-	if (!tab)
-		return (NULL);
-	ft_bzero(tab, count * size);
 	return (tab);
 }
 
