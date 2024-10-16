@@ -70,6 +70,33 @@ static int check_count_texture(t_game *data)
 	return (0);
 }
 
+int check_if_space(char **map, int x, int y)
+{
+    return (map[y - 1][x] == '1' && map[y + 1][x] == '1' &&
+            map[y][x - 1] == '1' && map[y][x + 1] == '1');
+}
+
+static int check_arround_0(char **map, int x, int y)
+{
+    // check high
+    if (map[y - 1][x] != '1' && map[y - 1][x] != '0')
+        if (map[y - 1][x] != ' ' || !check_space(map, x, y - 1))
+            return (0);
+    // check bot
+    if (map[y + 1][x] != '1' && map[y + 1][x] != '0')
+        if (map[y + 1][x] != ' ' || !check_space(map, x, y + 1))
+            return (0);
+    // check left
+    if (map[y][x - 1] != '1' && map[y][x - 1] != '0')
+        if (map[y][x - 1] != ' ' || !check_space(map, x - 1, y))
+            return (0);
+    // check right
+    if (map[y][x + 1] != '1' && map[y][x + 1] != '0')
+        if (map[y][x + 1] != ' ' || !check_space(map, x + 1, y))
+            return (0);
+    return (1);
+}
+
 static void check_for_texture(t_game *data)
 {
 	int i;
