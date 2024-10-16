@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:35:35 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/15 16:14:59 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/16 11:36:42 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,6 @@ int check_top_and_bottom(char *line)
 		i++;
 	}
 	return (0);
-}
-
-void flood_fill(t_map *data, char **map, int x, int y)
-{
-    if (y < 0 || y >= data->columns || x < 0 || x >= data->line || map[y][x] != '0')
-        return ;
-    map[y][x] = '.';
-    flood_fill(data, map, x - 1, y);
-    flood_fill(data, map, x + 1, y);
-    flood_fill(data, map, x, y - 1);
-    flood_fill(data, map, x, y + 1);
 }
 
 int check_line(char *str, t_game *data)
@@ -70,7 +59,7 @@ static int check_count_texture(t_game *data)
 	return (0);
 }
 
-int check_if_space(char **map, int x, int y)
+static int check_if_space(char **map, int x, int y)
 {
     return (map[y - 1][x] == '1' && map[y + 1][x] == '1' &&
             map[y][x - 1] == '1' && map[y][x + 1] == '1');
@@ -176,24 +165,24 @@ static int	validate_line(char *line, t_game *data)
 	return (0);
 }
 
-// int check_map(t_game *data)
-// {
-// 	unsigned int	i;
+int check_map(t_game *data)
+{
+	unsigned int	i;
 
-// 	i = 0;
-// 	while (data->map.map[i] && !is_whitespaces(data->map.map[i]))
-// 		i++;
-// 	if (check_top_and_bottom(data->map.map[i]))
-// 		return(1);
-// 	while (data->map.map[i])
-// 	{
-// 		flood_fill(data, data->map.map, data->map.line, data->map.columns);
-// 		if (validate_line(data->map.map[i], data))
-// 			return (1);
-// 		i++;
-// 	}
-// 	i--;
-// 	if (check_top_and_bottom(data->map.map[i]))
-// 		return(1);
-// 	return (0);
-// }
+	i = 0;
+	while (data->map.map[i] && !is_whitespaces(data->map.map[i]))
+		i++;
+	if (check_top_and_bottom(data->map.map[i]))
+		return(1);
+	while (data->map.map[i])
+	{
+		check_arround_0(data->map.map, i, i);
+		if (validate_line(data->map.map[i], data))
+			return (1);
+		i++;
+	}
+	i--;
+	if (check_top_and_bottom(data->map.map[i]))
+		return(1);
+	return (0);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parding_pos_player.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 15:10:32 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/15 15:15:37 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/16 11:25:14 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,25 @@
 
 void get_pos_player(t_game *pos)
 {
-    int x, y;
+    int x; 
+    int y;
 
     y = 0;
-    while (game->map[y])
+    while (pos->map.map[y])
     {
         x = 0;
-        while (game->map[y][x])
+        while (pos->map.map[y][x])
         {
-            if (ft_strchr("NSEW", game->map[y][x]))
+            if (ft_strchr("NSEW", pos->map.map[y][x]))
             {
-                game->player.pos_x = x;
-                game->player.pos_y = y;
-                game->player.direction = game->map[y][x];
+                pos->player.pos_x = x;
+                pos->player.pos_y = y;
+                pos->player.orientation = pos->map.map[y][x];
                 return;
             }
             x++;
         }
         y++;
     }
-    exit_error("Error: No player position found\n");
+    exit_error("error: no player position found\n");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 14:41:12 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/15 16:02:14 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/16 11:24:45 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,9 @@ typedef struct s_text
 typedef struct s_player
 {
 	double	x;
+	int		pos_x;
+	int		pos_y;
+	char	orientation;
 	double	y;
 	double	plane_x;
 	double	plane_y;
@@ -187,22 +190,23 @@ void		draw_textures(t_game *game);
 void		free_all(t_game *game);
 
 //fonction for check map
-int check_line(char *str, t_game *data);
-int	is_char_valid(char c);
-void	exit_error(char *str);
+int 		check_line(char *str, t_game *data);
+int			is_char_valid(char c);
+void		exit_error(char *str);
+int 		size_map (int fd);
 
-int 	is_whitespaces(char *str);
-char	*ft_strchr(const char *s, int c);
-size_t	ft_strlen(const char *s);
-void	*ft_memset(void *s, int c, size_t n);
-int		ft_atoi(const char *nptr);
-void 	free_tab(char **tab);
-char	**ft_split(char const *s, char c);
-char	**get_map(int fd);
-void	check_cub_argv(char *argv);
-int 	open_fd(t_game *data,  char **argv);
-int		check_map(t_game *data);
-char	*ft_strjoin(char const *s1, char const *s2);
-int		ft_strcmp(const char *s1, const char *s2);
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
+int 		is_whitespaces(char *str);
+char		*ft_strchr(const char *s, int c);
+size_t		ft_strlen(const char *s);
+void		*ft_memset(void *s, int c, size_t n);
+int			ft_atoi(const char *nptr);
+void 		free_tab(char **tab);
+char		**ft_split(char const *s, char c);
+char		**get_map(int fd);
+void		check_cub_argv(char *argv);
+int 		open_fd(t_game *data,  char **argv);
+//int			check_map(t_game *data);
+char		*ft_strjoin(char const *s1, char const *s2);
+int			ft_strcmp(const char *s1, const char *s2);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
 #endif

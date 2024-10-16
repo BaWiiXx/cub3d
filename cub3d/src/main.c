@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:43:16 by egomez            #+#    #+#             */
-/*   Updated: 2024/10/15 15:50:13 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/16 11:21:12 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ int main(int argc, char **argv)
 		return (1);
 	}
     check_cub_argv(argv[1]);
+	open_fd(&data, argv);
+	size_map(data);
+	close(data->fd);
 	open_fd(&data, argv);
 	data->map.map = get_map(data->fd);
 	check_texture();
