@@ -6,11 +6,11 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 09:58:19 by baptiste          #+#    #+#             */
-/*   Updated: 2024/10/16 16:08:51 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/17 19:10:34 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <../include/parsing.h>
+#include "../include/parsing.h"
 
 int	open_fd(t_game *data, char **argv)
 {
@@ -38,6 +38,6 @@ void	check_cub_argv(char *argv)
 	size_argv = ft_strlen(argv);
 	if ((size_argv >= 4) && (ft_strcmp(argv + size_argv - 4, ".cub") == 0))
 		return ;
-	write(2, "Error:\nThe map should end with .ber\n", 36);
+	write(2, "error: the map should end with .cub\n", 36);
 	exit(0);
 }

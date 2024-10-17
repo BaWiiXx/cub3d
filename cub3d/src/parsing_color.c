@@ -6,19 +6,11 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:26:01 by baptiste          #+#    #+#             */
-/*   Updated: 2024/10/16 14:19:07 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/17 17:54:48 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <../include/parsing.h>
-
-void	set_color(t_game *data, char *line)
-{
-	if (line[0] == 'F ')
-		data->ceilfloor.floor_color = get_color(line + 2);
-	if (line[0] == 'C ')
-		data->ceilfloor.ceil_color = get_color(line + 2);
-}
+#include "../include/parsing.h"
 
 static int	get_value(char *line, int *index)
 {
@@ -51,7 +43,17 @@ static	uint32_t	get_color(char *line)
 	r = get_value(line, &index);
 	g = get_value(line, &index);
 	b = get_value(line, &index);
+	if(!r || !g || !b)
+		exit_error("error: R,G,B wrong color");
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		exit_error("error: wrong value color");
-	return (r << 16 | g << 8 | b << 8 << 255);
+	return (r << 16 | g << 8 | b << 8 | 255);
+}
+
+void	set_color(t_game *data, char *line)
+{
+	if (line[0] == 'F')
+		data->ceilfloor.floor_color = get_color(line + 2);
+	if (line[0] == 'C')
+		data->ceilfloor.ceil_color = get_color(line + 2);
 }

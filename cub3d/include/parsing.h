@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 14:41:12 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/16 11:24:45 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/10/17 18:00:25 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@
 #include <stdint.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "../get_next_line/get_next_line.h" 
+#include "../src/get_next_line/get_next_line.h" 
 #include "../MLX42/include/MLX42/MLX42.h"
 
 # define S_W 1080
@@ -105,8 +105,6 @@ typedef struct s_text
 typedef struct s_player
 {
 	double	x;
-	int		pos_x;
-	int		pos_y;
 	char	orientation;
 	double	y;
 	double	plane_x;
@@ -123,9 +121,9 @@ typedef struct s_map
 	char		*c_color;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
-	int			columns;
 	int			line;
 	int 		dir;
+	int			start_map;
 	char		**map;
 }				t_map;
 
@@ -194,18 +192,24 @@ int 		check_line(char *str, t_game *data);
 int			is_char_valid(char c);
 void		exit_error(char *str);
 int 		size_map (int fd);
+void		check_texture(t_game *data);
+void		get_pos_player(t_game *pos);
+void		check_for_texture(t_game *data);
+void		check_zero(t_game *game, char **map_cpy);
+void 		parse_map(t_game *data);
+char		*ft_strdup(const char *src);
+void		ft_putstr_fd(char *s, int fd);
 
-int 		is_whitespaces(char *str);
 char		*ft_strchr(const char *s, int c);
 size_t		ft_strlen(const char *s);
+int			strlen_flood(const char *s);
 void		*ft_memset(void *s, int c, size_t n);
 int			ft_atoi(const char *nptr);
 void 		free_tab(char **tab);
 char		**ft_split(char const *s, char c);
-char		**get_map(int fd);
+char		**get_map(t_game *data);
 void		check_cub_argv(char *argv);
 int 		open_fd(t_game *data,  char **argv);
-//int			check_map(t_game *data);
 char		*ft_strjoin(char const *s1, char const *s2);
 int			ft_strcmp(const char *s1, const char *s2);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);

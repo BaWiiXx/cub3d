@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:30:04 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/16 14:09:51 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/17 18:30:16 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <../include/parsing.h>
+#include "../include/parsing.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -99,14 +99,4 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	return (m * s);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
 }

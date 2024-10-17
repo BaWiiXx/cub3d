@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 09:51:41 by bdany             #+#    #+#             */
-/*   Updated: 2024/01/23 12:15:16 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/17 18:53:54 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,19 @@ char	*ft_strnjoin(char *s1, char *s2, int n)
 	return (tab);
 }
 
-char	*ft_strchr(const char *s, int c)
-{
-	unsigned char	chr;
+// char	*ft_strchr(const char *s, int c)
+// {
+// 	unsigned char	chr;
 
-	chr = c;
-	if (!s)
-		return (NULL);
-	while (*s && *s != chr)
-		s++;
-	if (*s == chr)
-		return ((char *)s);
-	return (0);
-}
+// 	chr = c;
+// 	if (!s)
+// 		return (NULL);
+// 	while (*s && *s != chr)
+// 		s++;
+// 	if (*s == chr)
+// 		return ((char *)s);
+// 	return (0);
+// }
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {

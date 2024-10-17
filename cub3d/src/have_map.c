@@ -6,7 +6,7 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:07:22 by baptiste          #+#    #+#             */
-/*   Updated: 2024/10/16 14:28:20 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/17 17:55:57 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,25 @@ int	size_map(int fd)
 	return (count_line);
 }
 
-void	get_map(int fd, t_game *data)
+char	**get_map(t_game *data)
 {
 	char	*line;
+	char	**map;
 	int		i;
 
 	i = 0;
-	data->map.map = malloc(sizeof(char *) * (data->map.line + 1));
-	if (!data->map.map)
-		return ;
-	line = get_next_line(fd);
+	map = malloc(sizeof(char *) * (data->map.line + 1));
+	if (!map)
+		exit_error("error: empty map\n");
+	line = get_next_line(data->fd);
 	while (i < data->map.line && line != NULL)
 	{
-		data->map.map[i] = line;
+		map[i] = line;
 		free(line);
-		line = get_next_line(fd);
+		line = get_next_line(data->fd);
 		i++;
 	}
 	free(line);
-	data->map.map[i] = NULL;
+	map[i] = NULL;
+	return(map);
 }
