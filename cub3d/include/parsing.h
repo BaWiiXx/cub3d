@@ -6,7 +6,7 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 14:41:12 by bdany             #+#    #+#             */
-/*   Updated: 2024/10/17 18:00:25 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/18 19:07:19 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,8 @@ typedef struct s_game
 
 void		init_map(t_game *game);
 void		init_player(t_game *game);
-void		init_text(t_game *game);
+// void		init_text(t_game *game);
+void 		init_texture(t_text *texture);
 
 void		parsing(t_map map, t_player player);
 
@@ -191,14 +192,16 @@ void		free_all(t_game *game);
 int 		check_line(char *str, t_game *data);
 int			is_char_valid(char c);
 void		exit_error(char *str);
-int 		size_map (int fd);
-void		check_texture(t_game *data);
+void 		size_map (t_game *data);
+void		check_texture(char **map);
 void		get_pos_player(t_game *pos);
-void		check_for_texture(t_game *data);
+void		check_for_texture(char **map, t_game *data);
 void		check_zero(t_game *game, char **map_cpy);
 void 		parse_map(t_game *data);
 char		*ft_strdup(const char *src);
 void		ft_putstr_fd(char *s, int fd);
+void 		init_all_of_value(t_game *data);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
 
 char		*ft_strchr(const char *s, int c);
 size_t		ft_strlen(const char *s);
@@ -209,7 +212,7 @@ void 		free_tab(char **tab);
 char		**ft_split(char const *s, char c);
 char		**get_map(t_game *data);
 void		check_cub_argv(char *argv);
-int 		open_fd(t_game *data,  char **argv);
+void 		open_fd(t_game *data,  char **argv);
 char		*ft_strjoin(char const *s1, char const *s2);
 int			ft_strcmp(const char *s1, const char *s2);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);

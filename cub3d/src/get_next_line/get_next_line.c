@@ -6,7 +6,7 @@
 /*   By: bdany <bdany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:35:47 by bdany             #+#    #+#             */
-/*   Updated: 2024/01/23 12:14:27 by bdany            ###   ########.fr       */
+/*   Updated: 2024/10/18 16:10:17 by bdany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	ft_join(char *buffer, char **s)
 		*s = NULL;
 		return ;
 	}
-	ref = ft_strchr(buffer, '\n');
+	ref = ft_strchr_gnl(buffer, '\n');
 	if (ref)
 	{
 		*s = ft_strnjoin(*s, buffer, ref - buffer + 1);
@@ -40,7 +40,7 @@ char	*get_line(int fd)
 	bytes = 1;
 	s = NULL;
 	ft_join(buffer, &s);
-	while (bytes > 0 && !ft_strchr(s, '\n'))
+	while (bytes > 0 && !ft_strchr_gnl(s, '\n'))
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
 		if (bytes < BUFFER_SIZE)

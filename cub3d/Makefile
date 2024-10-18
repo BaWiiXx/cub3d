@@ -121,7 +121,8 @@ SRCS = src/main.c \
 	   src/parsing_pos_player.c \
  	   src/parsing_texture.c \
 	   src/parsing_utils2.c \
-	   src/parsing_utils3.c
+	   src/parsing_utils3.c \
+	   src/init_all_of_value.c \
 
 HEADERS = -I includes -I $(LIBMLX)/include
 OBJS = $(SRCS:.c=.o)

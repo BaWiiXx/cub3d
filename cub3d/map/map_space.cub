@@ -1,13 +1,13 @@
-NO ./
-SO ./
-EA ./
-WE ./
+NO ./textures/north.png
+SO ./textures/south.png
+EA ./textures/east.png
+WE ./textures/west.png
 
 F   255,255,255
 C 255,                    255           ,                    255
 
 
- jashdahff
+jashdahff
 
 111111111111111111111
 1        1 1       01
